@@ -3,7 +3,7 @@
  *
  * This sketch demonstrates the control of hobby R/C servos
  * using ROS and the arduiono
- * 
+ *
  * For the full tutorial write up, visit
  * www.ros.org/wiki/rosserial_arduino_demos
  *
@@ -18,7 +18,7 @@
  #include <WProgram.h>
 #endif
 
-#include <Servo.h> 
+#include <Servo.h>
 #include <ros.h>
 #include <std_msgs/UInt16.h>
 #include <sensor_msgs/Joy.h>
@@ -35,9 +35,9 @@ char odom[] = "/odom";
 
 void servo_cb( const sensor_msgs::Joy& cmd_msg){
   uint16_t value = (cmd_msg.axes[0]*SCALE)+90;
-  servo.write(value); //set servo angle, should be from 0-180   
+  servo.write(value); //set servo angle, should be from 0-180
   float angle = servo.read();
-  digitalWrite(13, HIGH-digitalRead(13));  //toggle led  
+  digitalWrite(13, HIGH-digitalRead(13));  //toggle led
 }
 
 ros::Subscriber<sensor_msgs::Joy> sub("joy", servo_cb);
@@ -50,7 +50,6 @@ void setup(){
 
   servo.attach(9); //attach it to pin 9
 }
-
 //seems to be required
 void loop()
 {
